@@ -1,0 +1,17 @@
+.carBrandGrid,
+.carTypeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  gap: 1em;
+}
+
+.carBrandTile,
+.carTypeTile {
+  border-right: solid black 2px;
+  border-bottom: solid black 2px;
+  padding: 5px;
+}
+.carBrandTile:hover,
+.carTypeTile:hover {
+  box-shadow: 2px 2px grey;
+}

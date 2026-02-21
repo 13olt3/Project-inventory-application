@@ -1,5 +1,17 @@
 <form method="POST" action="/newbrand">
   <h1>New Car Brand:</h1>
+  <p>Current list of car brands:</p>
+  <div class="carBrandGrid">
+
+    <% carBrands.forEach((carBrand)=>{ %>
+      <p class="carBrandTile">
+        <%=carBrand.model_name %>
+      </p>
+      <%}) %>
+
+  </div>
+
+
   <label for="name">Car brand:</label>
   <input type="text" id="name" name="brandName">
 

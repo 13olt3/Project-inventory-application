@@ -1,7 +1,21 @@
 <form method="POST" action="/newtype">
   <h1>New Car Type:</h1>
-  <label for="name">Car type:</label>
-  <input type="text" id="name" name="typeName">
+  <p>Current list of car types:</p>
+
+  <div class="carTypeGrid">
+
+    <% carTypes.forEach((carType)=>{ %>
+      <p class="carTypeTile" title="<%=carType.description%>">
+
+        <%=carType.type %>
+      </p>
+      <%}) %>
+
+  </div>
+  <label for="type">Car type:</label>
+  <input type="text" id="type" name="typeName">
+  <label for="desc">Type Description:</label>
+  <input type="text" id="desc" name="typeDesc">
 
 
   <button>Submit</button>
