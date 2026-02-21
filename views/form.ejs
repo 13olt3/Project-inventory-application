@@ -10,20 +10,9 @@
 </head>
 
 <body>
-  This is the index page
+  <%- include(formName) %>
 
-
-  <%- include('partials/navbar', {links:links}) %>
+    <%- include('partials/navbar', {links:links}) %>
 </body>
 
 </html>
-
-
-<!-- <% carBrands.forEach((carBrand)=>{ %>
-  <p>
-    <%=carBrand.model_name %>
-  </p>
-
-
-
-  <%}) %> -->
