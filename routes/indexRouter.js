@@ -10,5 +10,6 @@ indexRouter.get("/newcar", indexController.carForm);
 
 indexRouter.post("/newtype", indexController.createNewType);
 indexRouter.post("/newbrand", indexController.createNewBrand);
+indexRouter.post("/newcar", indexController.createNewCar);
 
 module.exports = indexRouter;

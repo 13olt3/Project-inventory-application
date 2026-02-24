@@ -1,17 +1,45 @@
-<form method="POST" action="/newcar">
+<form class="newCarForm" method="POST" action="/newcar" autocomplete="off">
   <h1>New Car:</h1>
 
-
   <div class="">
-
     placeholder
-
   </div>
-  <label for="type">Car 1</label>
-  <input type="text" id="type" name="">
-  <label for="desc">Car 2</label>
-  <input type="text" id="desc" name="">
 
+  <label for="modelName">Model name:</label>
+  <input type="text" id="modelName" name="model_name">
+
+  <label for="color">Color:</label>
+  <select id="color" name="car_color">
+    <% carColors.forEach((color)=>{ %>
+      <option value="<%=color%>">
+        <%=color%>
+      </option>
+      <%});%>
+  </select>
+
+  <label for="horsepower">Car horsepower:</label>
+  <input type="number" id="horsepower" name="horsepower">
+
+  <label for="carDesc">Car description:</label>
+  <input type="text" id="carDesc" name="car_description">
+
+  <label for="type">Car type:</label>
+  <select id="type" name="type_id">
+    <% carTypes.forEach((carType)=>{%>
+      <option value="<%=carType.id %>">
+        <%=carType.type%>
+      </option>
+      <%});%>
+  </select>
+
+  <label for="brand">Car brand:</label>
+  <select id="brand" name="brand_id">
+    <% carBrands.forEach((carBrand)=>{%>
+      <option value="<%=carBrand.id %>">
+        <%=carBrand.model_name%>
+      </option>
+      <%});%>
+  </select>
 
   <button>Submit</button>
 </form>

@@ -15,3 +15,8 @@
 .carTypeTile:hover {
   box-shadow: 2px 2px grey;
 }
+
+.newCarForm {
+  display: grid;
+  justify-items: start;
+}

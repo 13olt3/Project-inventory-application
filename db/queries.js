@@ -12,15 +12,29 @@ async function getCarTypes() {
   return rows;
 }
 async function createNewBrand(brandName) {
-  await pool.query(
-    `INSERT INTO car_brand (model_name) VALUES ('${brandName}')`,
-  );
+  const values = [brandName];
+  const query = `INSERT INTO car_brand (model_name) VALUES ($1)`;
+  await pool.query(query, values);
 }
 
 async function createNewType(typeName, typeDesc) {
-  await pool.query(
-    `INSERT INTO car_type (type, description) VALUES ('${typeName}', '${typeDesc}')`,
-  );
+  const values = [typeName, typeDesc];
+  const query = `INSERT INTO car_type (type, description) VALUES ($1, $2)`;
+  await pool.query(query, values);
+}
+
+async function createNewCar(carData) {
+  const values = [
+    carData.model_name,
+    carData.car_color,
+    carData.horsepower,
+    carData.car_description,
+    carData.brand_id,
+    carData.type_id,
+  ];
+  const query = `INSERT INTO items (model_name, car_color, horsepower, car_description, brand_id, type_id)
+    VALUES ($1,$2,$3,$4,$5,$6)`;
+  await pool.query(query, values);
 }
 
 module.exports = {
@@ -28,4 +42,5 @@ module.exports = {
   getCarTypes,
   createNewBrand,
   createNewType,
+  createNewCar,
 };

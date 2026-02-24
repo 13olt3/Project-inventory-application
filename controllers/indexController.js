@@ -1,8 +1,8 @@
 const dbQuery = require("../db/queries");
 const links = [
   { href: "/", text: "Index" },
-  { href: "/newtype", text: "New car type" },
-  { href: "/newbrand", text: "New car brand" },
+  { href: "/newtype", text: "New Car Type" },
+  { href: "/newbrand", text: "New Car Brand" },
   { href: "/newcar", text: "New Car Details" },
 ];
 
@@ -33,11 +33,25 @@ async function brandForm(req, res) {
   });
 }
 
-function carForm(req, res) {
+async function carForm(req, res) {
+  const carBrands = await dbQuery.getCarBrands();
+  const carTypes = await dbQuery.getCarTypes();
+  const carColors = [
+    "red",
+    "blue",
+    "green",
+    "black",
+    "grey",
+    "yellow",
+    "white",
+  ];
   res.render("form", {
     title: "New Car Details",
     formName: "partials/itemForm",
     links: links,
+    carBrands: carBrands,
+    carTypes: carTypes,
+    carColors: carColors,
   });
 }
 
@@ -50,6 +64,20 @@ async function createNewBrand(req, res) {
   res.redirect("/");
 }
 
+async function createNewCar(req, res) {
+  const carData = {
+    model_name: req.body.model_name,
+    car_color: req.body.car_color,
+    horsepower: req.body.horsepower,
+    car_description: req.body.car_description,
+    type_id: req.body.type_id,
+    brand_id: req.body.brand_id,
+  };
+
+  dbQuery.createNewCar(carData);
+  res.redirect("/");
+}
+
 module.exports = {
   indexPage,
   typeForm,
@@ -57,4 +85,5 @@ module.exports = {
   carForm,
   createNewType,
   createNewBrand,
+  createNewCar,
 };
