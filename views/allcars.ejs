@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  All cars in inventory
+
+  <% carData.forEach((car)=>{%>
+    <div class="carList">
+      <p>Make: <%=car.brand_name%>
+      </p>
+      <p>Model: <%=car.model_name%>
+      </p>
+      <p>Car type: <%=car.type%>
+      </p>
+      <p> <a href="/delete/<%=car.id%>">
+          <span>
+            DELETE CAR
+          </span>
+        </a></p>
+
+    </div>
+    <%})%>
+
+
+
+      <%- include('partials/navbar', {links:links}) %>
+</body>
+
+</html>

@@ -37,10 +37,17 @@ async function createNewCar(carData) {
   await pool.query(query, values);
 }
 
+async function getAllCars() {
+  const query = `SELECT * FROM all_cars;`;
+  const results = await pool.query(query);
+  return results.rows;
+}
+
 module.exports = {
   getCarBrands,
   getCarTypes,
   createNewBrand,
   createNewType,
   createNewCar,
+  getAllCars,
 };

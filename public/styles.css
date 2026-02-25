@@ -20,3 +20,11 @@
   display: grid;
   justify-items: start;
 }
+
+.carList {
+  display: flex;
+  gap: 1em;
+}
+.carList > * {
+  border-bottom: 1px solid grey;
+}

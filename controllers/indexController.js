@@ -4,6 +4,7 @@ const links = [
   { href: "/newtype", text: "New Car Type" },
   { href: "/newbrand", text: "New Car Brand" },
   { href: "/newcar", text: "New Car Details" },
+  { href: "/allcars", text: "Show Whole Inventory" },
 ];
 
 function indexPage(req, res) {
@@ -78,6 +79,20 @@ async function createNewCar(req, res) {
   res.redirect("/");
 }
 
+async function showAllCars(req, res) {
+  const allCarData = await dbQuery.getAllCars();
+
+  res.render("allcars", {
+    title: "All cars",
+    links: links,
+    carData: allCarData,
+  });
+}
+async function deleteCar(req, res) {
+  console.log(req.params);
+  res.send(req.params.id);
+}
+
 module.exports = {
   indexPage,
   typeForm,
@@ -86,4 +101,6 @@ module.exports = {
   createNewType,
   createNewBrand,
   createNewCar,
+  showAllCars,
+  deleteCar,
 };
