@@ -9,6 +9,7 @@ indexRouter.get("/newbrand", indexController.brandForm);
 indexRouter.get("/newcar", indexController.carForm);
 indexRouter.get("/allcars", indexController.showAllCars);
 indexRouter.get("/delete/:id", indexController.deleteCar);
+indexRouter.get("/details/:id", indexController.carDetails);
 
 indexRouter.post("/newtype", indexController.createNewType);
 indexRouter.post("/newbrand", indexController.createNewBrand);

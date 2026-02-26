@@ -2,9 +2,9 @@ const pool = require("./pool");
 
 async function getCarBrands() {
   const { rows } = await pool.query("SELECT * FROM car_brand");
-  // console.log(rows);
   return rows;
 }
+// console.log(rows);
 
 async function getCarTypes() {
   const { rows } = await pool.query("SELECT * FROM car_type");
@@ -13,7 +13,7 @@ async function getCarTypes() {
 }
 async function createNewBrand(brandName) {
   const values = [brandName];
-  const query = `INSERT INTO car_brand (model_name) VALUES ($1)`;
+  const query = `INSERT INTO car_brand (brand_name) VALUES ($1)`;
   await pool.query(query, values);
 }
 
@@ -38,9 +38,22 @@ async function createNewCar(carData) {
 }
 
 async function getAllCars() {
-  const query = `SELECT * FROM all_cars;`;
+  const query = `SELECT * FROM all_cars`;
   const results = await pool.query(query);
   return results.rows;
+}
+
+async function deleteCar(carId) {
+  const value = [carId];
+  const query = `DELETE FROM items WHERE id = ($1)`;
+  await pool.query(query, value);
+}
+
+async function getCarDetails(carId) {
+  const value = [carId];
+  const query = `SELECT * FROM items WHERE id = ($1)`;
+  const result = await pool.query(query, value);
+  return result.rows;
 }
 
 module.exports = {
@@ -50,4 +63,6 @@ module.exports = {
   createNewType,
   createNewCar,
   getAllCars,
+  deleteCar,
+  getCarDetails,
 };

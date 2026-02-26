@@ -89,8 +89,14 @@ async function showAllCars(req, res) {
   });
 }
 async function deleteCar(req, res) {
-  console.log(req.params);
-  res.send(req.params.id);
+  await dbQuery.deleteCar(req.params.id);
+
+  res.redirect("/allCars");
+}
+
+async function carDetails(req, res) {
+  const carDetails = await dbQuery.getCarDetails(req.params.id);
+  res.send(carDetails);
 }
 
 module.exports = {
@@ -103,4 +109,5 @@ module.exports = {
   createNewCar,
   showAllCars,
   deleteCar,
+  carDetails,
 };
