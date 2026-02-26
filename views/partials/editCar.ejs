@@ -1,0 +1,72 @@
+<form class="newCarForm" method="POST" action="/editcar/<%=carDetails.id%>" autocomplete="off">
+  <h1>New Car:</h1>
+
+  <div class="">
+    placeholder
+  </div>
+  <div>
+    <p>Model name: <%= carDetails.model_name%>
+    </p>
+    <label for="modelName">New model name: </label>
+    <input type="text" id="modelName" name="model_name">
+  </div>
+
+  <div>
+    <p>Color: <%=carDetails.car_color%>
+    </p>
+    <label for="color">New Color:</label>
+    <select id="color" name="car_color">
+      <% carColors.forEach((color)=>{ %>
+        <option value="<%=color%>">
+          <%=color%>
+        </option>
+        <%});%>
+    </select>
+
+  </div>
+
+  <div>
+    <p>Current HP: <%=carDetails.horsepower%>
+    </p>
+    <label for="horsepower">New horsepower:</label>
+    <input type="number" id="horsepower" name="horsepower">
+  </div>
+
+  <div>
+    <p>Current car description: <%=carDetails.car_description%>
+    </p>
+
+    <label for="carDesc">New description:</label>
+    <input type="text" id="carDesc" name="car_description">
+  </div>
+
+  <div>
+    <p>Car type: <%= carDetails.type%>
+    </p>
+    <label for="type">New car type:</label>
+    <select id="type" name="type_id">
+      <% carTypes.forEach((carType)=>{%>
+        <option value="<%=carType.id %>">
+          <%=carType.type%>
+        </option>
+        <%});%>
+    </select>
+  </div>
+
+  <div>
+    <p>Car brand: <%= carDetails.brand_name%>
+    </p>
+    <label for="brand">New brand:</label>
+    <select id="brand" name="brand_id">
+      <% carBrands.forEach((carBrand)=>{%>
+        <option value="<%=carBrand.id %>">
+          <%=carBrand.brand_name%>
+        </option>
+        <%});%>
+    </select>
+
+  </div>
+
+
+  <button>Submit</button>
+</form>

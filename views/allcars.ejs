@@ -21,7 +21,8 @@
       </p>
       <p>Car type: <%=car.type%>
       </p>
-      <p> <a href="/delete/<%=car.id%>">
+      <p> <a href="/delete/<%=car.id%>"
+          onclick="return confirm('Are you sure you want to delete the <%= car.model_name %>? This cannot be undone.')">
           <span>
             DELETE CAR
           </span>
@@ -32,6 +33,7 @@
           </span>
         </a></p>
     </div>
+
     <%})%>
 
 

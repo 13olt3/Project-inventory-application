@@ -95,8 +95,57 @@ async function deleteCar(req, res) {
 }
 
 async function carDetails(req, res) {
+  const details = await dbQuery.getCarDetails(req.params.id);
+  // console.log(details);
+  res.render("singlecar", {
+    title: "Car Details",
+    links: links,
+    carDetails: details,
+  });
+}
+
+async function editCarDetails(req, res) {
+  const carBrands = await dbQuery.getCarBrands();
+  const carTypes = await dbQuery.getCarTypes();
+  const carColors = [
+    "red",
+    "blue",
+    "green",
+    "black",
+    "grey",
+    "yellow",
+    "white",
+  ];
   const carDetails = await dbQuery.getCarDetails(req.params.id);
-  res.send(carDetails);
+
+  res.render("form", {
+    title: "New Car Details",
+    formName: "partials/editCar",
+    links: links,
+    carBrands: carBrands,
+    carTypes: carTypes,
+    carColors: carColors,
+    carDetails: carDetails,
+  });
+}
+
+async function newCarDetails(req, res) {
+  const carData = {
+    model_name: req.body.model_name,
+    car_color: req.body.car_color,
+    horsepower: req.body.horsepower,
+    car_description: req.body.car_description,
+    brand_id: req.body.brand_id,
+    type_id: req.body.type_id,
+    car_id: req.params.id,
+  };
+  await dbQuery.updateCarDetails(carData);
+  const updatedDetails = await dbQuery.getCarDetails(carData.car_id);
+  res.render("singlecar", {
+    title: "Car Details",
+    links: links,
+    carDetails: updatedDetails,
+  });
 }
 
 module.exports = {
@@ -110,4 +159,6 @@ module.exports = {
   showAllCars,
   deleteCar,
   carDetails,
+  editCarDetails,
+  newCarDetails,
 };

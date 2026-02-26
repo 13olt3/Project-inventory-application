@@ -13,10 +13,40 @@
 <body>
   This page shows a singular cars' details.
 
-  <%= carDetails %>
+  <p>
+    Brand: <%= carDetails.brand_name %>
+  </p>
+  <p>
+    Model: <%= carDetails.model_name %>
+  </p>
+  <p>
+    Car type: <%= carDetails.type %>
+  </p>
+  <p>
+    Horsepower: <%= carDetails.horsepower %>
+  </p>
+  <p
+    style="color:<%=carDetails.car_color%>; background-color:<%= carDetails.car_color === 'white' ? 'black' : 'transparent' %>;">
+    Color: <%= carDetails.car_color %>
+  </p>
+  <p>
+    Description: <%= carDetails.car_description %>
+  </p>
 
 
-    <%- include('partials/navbar', {links:links}) %>
+  <p>
+    <a href="/edit/<%=carDetails.id%>">
+      <span>
+        Edit Car
+      </span>
+    </a>
+  </p>
+
+
+
+
+
+  <%- include('partials/navbar', {links:links}) %>
 </body>
 
 </html>

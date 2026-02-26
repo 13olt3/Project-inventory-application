@@ -51,9 +51,23 @@ async function deleteCar(carId) {
 
 async function getCarDetails(carId) {
   const value = [carId];
-  const query = `SELECT * FROM items WHERE id = ($1)`;
-  const result = await pool.query(query, value);
-  return result.rows;
+  const query = `SELECT * FROM all_cars WHERE id = ($1)`;
+  const { rows } = await pool.query(query, value);
+  return rows[0];
+}
+
+async function updateCarDetails(carData) {
+  const query = `UPDATE items SET model_name = $1, car_color = $2, horsepower = $3, car_description = $4, brand_id = $5, type_id = $6 WHERE id = $7`;
+  const values = [
+    carData.model_name,
+    carData.car_color,
+    carData.horsepower,
+    carData.car_description,
+    carData.brand_id,
+    carData.type_id,
+    carData.car_id,
+  ];
+  await pool.query(query, values);
 }
 
 module.exports = {
@@ -65,4 +79,5 @@ module.exports = {
   getAllCars,
   deleteCar,
   getCarDetails,
+  updateCarDetails,
 };
